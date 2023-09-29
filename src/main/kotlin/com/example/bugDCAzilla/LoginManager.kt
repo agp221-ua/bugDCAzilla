@@ -1,8 +1,9 @@
-import user.UsersManager
+package com.example.bugDCAzilla
+
+import com.example.bugDCAzilla.user.UsersManager
 import javax.swing.*
 import java.awt.*
-import java.awt.event.ActionEvent
-import java.awt.event.ActionListener
+
 class LoginManager {
 
     companion object{

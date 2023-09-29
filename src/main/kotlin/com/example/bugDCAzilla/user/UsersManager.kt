@@ -1,4 +1,4 @@
-package user
+package com.example.bugDCAzilla.user
 
 import java.io.BufferedWriter
 import java.io.File
