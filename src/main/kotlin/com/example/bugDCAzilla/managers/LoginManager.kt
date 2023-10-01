@@ -1,6 +1,5 @@
-package com.example.bugDCAzilla
+package com.example.bugDCAzilla.managers
 
-import com.example.bugDCAzilla.user.UsersManager
 import javax.swing.*
 import java.awt.*
 
@@ -11,15 +10,14 @@ class LoginManager {
     }
 
     fun show() {
-        SwingUtilities.invokeLater {
-            createLoginWindow()
-        }
+        createLoginWindow()
     }
 
     private fun createLoginWindow() {
         val frame = JFrame("Inicio de Sesión")
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        frame.defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
         frame.size = Dimension(400, 200)
+        frame.setLocationRelativeTo(null)
         frame.isResizable = false
         frame.iconImage = ImageIcon(javaClass.getResource("/icono.png")).image
 
@@ -50,7 +48,8 @@ class LoginManager {
             val password = String(passwordField.password)
 
             if (isValidLogin(username, password)) {
-                //TODO cerrar ventana y ir a venana principal
+                MainManager.mainManager.updateUsername()
+                frame.dispose()
             } else {
                 JOptionPane.showMessageDialog(
                     frame,
@@ -66,7 +65,9 @@ class LoginManager {
             val password = String(passwordField.password)
 
             if (isValidRegister(username, password)) {
-                //TODO cerrar ventana y ir a venana principal
+                MainManager.mainManager.updateUsername()
+                frame.dispose()
+
             } else {
                 JOptionPane.showMessageDialog(
                     frame,

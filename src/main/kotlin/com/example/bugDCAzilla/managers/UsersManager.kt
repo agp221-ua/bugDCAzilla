@@ -1,5 +1,6 @@
-package com.example.bugDCAzilla.user
+package com.example.bugDCAzilla.managers
 
+import com.example.bugDCAzilla.dataObject.User
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
@@ -20,7 +21,7 @@ class UsersManager {
         val usersManager: UsersManager = UsersManager()
     }
 
-    private val users: MutableMap<String, User> = mutableMapOf()
+    val users: MutableMap<String, User> = mutableMapOf()
 
     var currentUser: User? = null
 
@@ -36,15 +37,16 @@ class UsersManager {
         file.inputStream().bufferedReader().forEachLine {
             val user = parseLine(it) ?: return@forEachLine
             users[user.name] = user
+            println("User: ${user.name}")
         }
     }
 
     private fun parseLine(line: String): User? {
         val fields = line.split("#")
-        if (fields.size != 4)
+        if (fields.size != 3)
             return null
-        val admin = fields[3].toBooleanStrictOrNull() ?: return null
-        return User(fields[1], fields[2], admin)
+        val admin = fields[2].toBooleanStrictOrNull() ?: return null
+        return User(fields[0], fields[1], admin)
     }
 
     private fun parseUser(user: User): String {
@@ -85,6 +87,7 @@ class UsersManager {
             writer.newLine() // Agregar un salto de línea después de la línea que se quiere agregar.
 
             writer.close()
+            file.close()
 
         } catch (_: IOException) {
         }
