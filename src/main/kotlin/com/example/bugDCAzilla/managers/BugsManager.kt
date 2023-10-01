@@ -54,7 +54,7 @@ class BugsManager {
         return "${bug.id}␟${bug.author}␟${bug.state}␟${bug.date}␟${bug.title}␟${bug.description.replace("\n", "␜")}␟${parseComments(bug.comments)}␟${parseLabels(bug.labels)}"
     }
 
-    private fun parseComments(line: String): List<Comment> {
+    private fun parseComments(line: String): MutableList<Comment> {
         val comments = line.split('␝')
         val commentsArray = mutableListOf<Comment>()
         for (comment in comments) {
@@ -162,10 +162,18 @@ class BugsManager {
                 val searchLabel = search.substring(1)
                 if (bug.value.labels.contains(searchLabel)) add = true
             }
-            if (add) bugsArray.add(arrayOf(bug.value.id, bug.value.date, bug.value.title, bug.value.labels))
+            if (add) bugsArray.add(arrayOf(bug.value.id, bug.value.date, bug.value.title, showLabels(bug.value)))
         }
 
         return bugsArray.toTypedArray()
+    }
+
+    fun showLabels(bug: Bug): String {
+        var labels = ""
+        for (label in bug.labels) {
+            labels += "$label, "
+        }
+        return labels.substring(0, labels.length - 2)
     }
 
 

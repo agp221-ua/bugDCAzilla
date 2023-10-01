@@ -182,7 +182,7 @@ class NewBugManager {
                 LocalDateTime.now().format(timeFormat),
                 title,
                 description,
-                listOf(),
+                mutableListOf(),
                 labels))
 
             //TODO cargar pagina del bug

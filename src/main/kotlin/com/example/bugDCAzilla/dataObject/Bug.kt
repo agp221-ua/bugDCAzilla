@@ -7,14 +7,14 @@ class Bug(
     var date: String,
     var title: String,
     var description: String,
-    var comments: List<Comment>,
+    var comments: MutableList<Comment>,
     var labels: List<String>
 ) {
     companion object {
         var nextID = 0
     }
     fun addComment(comment: Comment) {
-        comments = comments + comment
+        comments.add(comment)
     }
 
     fun addLabel(label: String) {
