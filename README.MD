@@ -35,3 +35,4 @@ Utiliza las funciones de búsqueda y filtros de BugDCAzilla para encontrar bugs 
 - Para acceder a la sección de administración, debes iniciar sesión con una cuenta de administrador. Como
 se ha mencionado anteriormente, para crear una cuenta de administrador debes crear una cuenta y modificar el campo _false_ por _true_ en el fichero de base de datos `users.bd`.
 - Para cerrar o abrir un bug simplemente debes hacer clic en el texto de `[CL]` para reabrir el bug o en `[OP]` para cerrarlo (todo ello desde una cuenta de administrador).
+- Si no deja ejecutar con doble click, simplemente ejecuta desde terminal con java -jar <fichero.jar>
