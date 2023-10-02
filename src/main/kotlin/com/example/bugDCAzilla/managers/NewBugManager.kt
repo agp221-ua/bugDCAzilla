@@ -128,6 +128,7 @@ class NewBugManager {
             if (labelsListModel.contains(label) ||
                 selectedLabelsListModel.contains(label)) return@addActionListener
             selectedLabelsListModel.addElement(label)
+            labelsField.text = ""
         }
 
         gbc.gridx = 0
@@ -174,8 +175,7 @@ class NewBugManager {
                 LoginManager.loginManager.show()
                 return@addActionListener
             }
-
-            BugsManager.bugsManager.addBug(Bug(
+            val bug = Bug(
                 Bug.nextID++,
                 UsersManager.usersManager.currentUser!!.name,
                 State.OPEN,
@@ -183,10 +183,10 @@ class NewBugManager {
                 title,
                 description,
                 mutableListOf(),
-                labels))
+                labels)
+            BugsManager.bugsManager.addBug(bug)
 
-            //TODO cargar pagina del bug
-            Main.show(SearchManager.searchManager.createSearchManagerWindow())
+            Main.show(BugManager.bugManager.createBugManagerWindow(bug.id))
         }
         panel.add(addButton, gbc)
 

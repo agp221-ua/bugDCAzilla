@@ -9,9 +9,7 @@ import javax.swing.JPanel
 import javax.swing.JScrollPane
 
 class DocumentationManager {
-    fun show() {
-        //TODO("Not yet implemented")
-    }
+
 
     fun createDocumentationWindow(): JPanel {
         val panel = JPanel()
